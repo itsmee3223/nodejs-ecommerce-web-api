@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 const ProductSchema = new Schema({
   name: {
@@ -31,7 +31,7 @@ const ProductSchema = new Schema({
     default: 0,
   },
   category: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: "Category",
     required: [true, "Please provide category product"],
   },
@@ -57,10 +57,6 @@ const ProductSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-});
-
-ProductSchema.virtual("id").get(function () {
-  return this._id.toHexString();
 });
 
 ProductSchema.set("toJSON", {
