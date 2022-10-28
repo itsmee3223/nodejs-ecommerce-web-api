@@ -4,6 +4,7 @@ const morgan = require("morgan");
 
 const categoryRoutes = require("./routes/categoryRoutes");
 const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 app.use(cors());
@@ -21,5 +22,6 @@ app.get("/", (req, res) => {
 const apiURL = process.env.API_URL;
 app.use(`${apiURL}/categories`, categoryRoutes);
 app.use(`${apiURL}/products`, productRoutes);
+app.use(`${apiURL}/users`, userRoutes);
 
 module.exports = app;
