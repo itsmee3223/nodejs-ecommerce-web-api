@@ -85,6 +85,11 @@ exports.updateUser = asyncHandler(async (req, res) => {
       message: `user not found with id: ${req.params.id}`,
     });
   }
+
+  return res.status(200).json({
+    status: "success",
+    data: user,
+  });
 });
 
 exports.loginUser = asyncHandler(async (req, res) => {
