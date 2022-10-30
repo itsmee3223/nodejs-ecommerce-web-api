@@ -7,12 +7,18 @@ const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 
+const authJWT = require("./utils/jwt");
+const errorHandler = require("./middlewares/errorHandler");
+
 const app = express();
 app.use(cors());
 app.options("*", cors());
 // middleware
 app.use(express.json());
 app.use(morgan("tiny"));
+app.use(authJWT());
+app.use("/public/uploads", express.static(__dirname + "/public/uploads"));
+app.use(errorHandler);
 
 app.get("/", (req, res) => {
   return res.status(200).json({
